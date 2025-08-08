@@ -21,7 +21,6 @@ const ImageMetadataPage = () => {
 
   const handleUpload = async (file: FileType[]) => {
     setUploading(true)
-    console.log(file[0])
     const csv = await file[0].file.text()
     const json = convertCsvToJson<Record<string, string>>(csv)
     const count = json.length
@@ -41,13 +40,11 @@ const ImageMetadataPage = () => {
       const data = batch.map(entry => {
         const url = entry.url
         delete entry.url
-        console.log(entry)
         return {
           url: url,
           metadata: entry
         }
       })
-      console.log(data)
 
       await sdk.client.fetch(`/admin/image-metadata`, {
         method: 'POST',
@@ -73,7 +70,7 @@ const ImageMetadataPage = () => {
               <Text className="my-4">Which metadata fields do you wish to download? (Comma seperated string fields from image metadata to output). Only images missing one or more of these fields will be included in download</Text>
               <Input inputMode='text' value={fields} onChange={(e) => setFields(e.target.value)} />
               <Text className="my-4">Only include entries missing the field(s)</Text>
-              <Checkbox id='onlymissing' checked={onlyMissing} onCheckedChange={() => { setOnlyMissing(!onlyMissing); console.log(onlyMissing) }}></Checkbox>
+              <Checkbox id='onlymissing' checked={onlyMissing} onCheckedChange={() => setOnlyMissing(!onlyMissing)}></Checkbox>
               <Button className="my-4" onClick={handleDownload}>Download</Button>
             </>
           }
