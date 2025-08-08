@@ -1,7 +1,7 @@
 import { Container, Heading, Input, Text, Button, Checkbox } from '@medusajs/ui'
 import { defineRouteConfig } from '@medusajs/admin-sdk'
 import { Camera } from '@medusajs/icons'
-import { FileType, FileUpload } from '../../../components/common/file-upload'
+import { FileType, FileUpload } from '../../../components/file-upload'
 import { convertCsvToJson } from '../../../../utils/csv-helpers'
 import { useState } from 'react'
 import { sdk } from '../../../lib/sdk'
