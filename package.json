@@ -1,0 +1,85 @@
+{
+		"name": "@alpha-solutions/medusa-image-alt",
+		"version": "1.0.0",
+		"description": "Possibility to set image alt metadata on product pages or export/import as bulk through settings.",
+		"author": "Medusa (https://medusajs.com)",
+		"license": "MIT",
+		"files": [
+				".medusa/server"
+		],
+		"exports": {
+				"./package.json": "./package.json",
+				"./workflows": "./.medusa/server/src/workflows/index.js",
+				"./.medusa/server/src/modules/*": "./.medusa/server/src/modules/*/index.js",
+				"./modules/*": "./.medusa/server/src/modules/*/index.js",
+				"./providers/*": "./.medusa/server/src/providers/*/index.js",
+				"./admin": {
+						"import": "./.medusa/server/src/admin/index.mjs",
+						"require": "./.medusa/server/src/admin/index.js",
+						"default": "./.medusa/server/src/admin/index.js"
+				},
+				"./*": "./.medusa/server/src/*.js"
+		},
+		"keywords": [
+				"medusa",
+				"plugin",
+				"medusa-plugin-other",
+				"medusa-plugin",
+				"medusa-v2",
+				"medusa-plugin-integration"
+		],
+		"scripts": {
+				"build": "medusa plugin:build",
+				"dev": "medusa plugin:develop",
+				"prepublishOnly": "medusa plugin:build"
+		},
+		"devDependencies": {
+				"@medusajs/admin-sdk": "^2.8.7",
+				"@medusajs/cli": "^2.8.7",
+				"@medusajs/framework": "^2.8.7",
+				"@medusajs/icons": "^2.8.7",
+				"@medusajs/js-sdk": "^2.8.7",
+				"@medusajs/medusa": "^2.8.7",
+				"@medusajs/test-utils": "^2.8.7",
+				"@medusajs/ui": "^4.0.17",
+				"@mikro-orm/cli": "^6.4.16",
+				"@mikro-orm/core": "^6.4.16",
+				"@mikro-orm/knex": "^6.4.16",
+				"@mikro-orm/migrations": "^6.4.16",
+				"@mikro-orm/postgresql": "^6.4.16",
+				"@swc/core": "^1.13.1",
+				"@types/jsonwebtoken": "^9.0.10",
+				"@types/node": "^20.0.0",
+				"@types/react": "^18.3.23",
+				"@types/react-dom": "^18.3.7",
+				"awilix": "^8.0.1",
+				"pg": "^8.16.3",
+				"prop-types": "^15.8.1",
+				"react": "^18.3.1",
+				"react-dom": "^18.3.1",
+				"ts-node": "^10.9.2",
+				"typescript": "^5.8.3",
+				"vite": "^5.4.19",
+				"yalc": "^1.0.0-pre.53"
+		},
+		"peerDependencies": {
+				"@medusajs/admin-sdk": "^2.8.2",
+				"@medusajs/cli": "^2.8.2",
+				"@medusajs/framework": "^2.8.2",
+				"@medusajs/icons": "^2.8.2",
+				"@medusajs/js-sdk": "^2.8.2",
+				"@medusajs/medusa": "^2.8.2",
+				"@medusajs/test-utils": "^2.8.2",
+				"@medusajs/ui": "^4.0.12",
+				"@mikro-orm/cli": "^6.4.3",
+				"@mikro-orm/core": "^6.4.3",
+				"@mikro-orm/knex": "^6.4.3",
+				"@mikro-orm/migrations": "^6.4.3",
+				"@mikro-orm/postgresql": "^6.4.3",
+				"awilix": "^8.0.1",
+				"pg": "^8.13.0"
+		},
+		"engines": {
+				"node": ">=20"
+		}
+}
