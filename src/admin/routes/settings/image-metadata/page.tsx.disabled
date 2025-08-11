@@ -1,4 +1,5 @@
-import { Container, Heading, Input, Text, Button, Checkbox } from '@medusajs/ui'
+//it was meant to be exported like this, but the page just gives a 404. For now I have made the image-metadata-import-export widget on store.details page instead
+/*import { Container, Heading, Input, Text, Button, Checkbox } from '@medusajs/ui'
 import { defineRouteConfig } from '@medusajs/admin-sdk'
 import { Camera } from '@medusajs/icons'
 import { FileType, FileUpload } from '../../../components/file-upload'
@@ -116,3 +117,4 @@ export const config = defineRouteConfig({
   label: 'Image metadata',
   icon: Camera
 })
+*/
