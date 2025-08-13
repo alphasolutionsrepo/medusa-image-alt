@@ -34,11 +34,11 @@ The plugin adds two widgets to your Medusa admin. Each is intended to set the al
 
 ### Product Details widget
 On the product details page a widget displaying all the images and their alt. Setting an alt on an image and clicking save, will set this alt property on the metadata of the image.
-![product details widget](https://github.com/alphasolutionsrepo/medusa-image-alt/blob/main/doc/product-details-widget.jpg?raw=true)
+![product details widget](https://github.com/alphasolutionsrepo/medusa-image-alt/blob/main/doc/product-details-widget.png?raw=true)
 
 ### Import Export widget
 Using this centralized widget for importing and exporting image metadata, shop admins can leverage AI to make meaningful alts for the images for the entire shop as one batch operation.
 This widget enables export and import images to/from CSV. The default setting is exporting only alts, but it's also possible to choose other properties in the metadata to export.
 The import action will set any included columns (asides from the mandatory url column) to the metadata, retaining any other metadata already present on the image.
-![import export widget](https://github.com/alphasolutionsrepo/medusa-image-alt/blob/main/doc/import-export-widget.jpg?raw=true)
+![import export widget](https://github.com/alphasolutionsrepo/medusa-image-alt/blob/main/doc/import-export-widget.png?raw=true)
 This widget was intended to be introduced as a route extension - unfortunately that broke upon making it a module. Instead it is located as a widget on the built in settings/store route.
