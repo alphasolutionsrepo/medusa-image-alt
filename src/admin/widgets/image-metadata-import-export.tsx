@@ -1,4 +1,4 @@
-import { Container, Heading, Input, Text, Button, Checkbox } from '@medusajs/ui'
+import { Container, Heading, Input, Text, Button, Checkbox, Divider } from '@medusajs/ui'
 import { defineWidgetConfig } from '@medusajs/admin-sdk'
 import { FileType, FileUpload } from '../components/file-upload'
 import { convertCsvToJson } from '../../utils/csv-helpers'
@@ -62,49 +62,49 @@ const ImageMetadataImportExport = ({ data }: DetailWidgetProps<AdminStore>) => {
     <>
       <Container className="divide-y p-0">
         <div className="flex items-center justify-between px-6 py-4">
-          <Heading level="h2">Download missing Image Metadata</Heading>
+          <Heading level="h2">Image Metadata</Heading>
         </div>
-        <div className="flex h-full flex-col px-6 py-4">
-          {
-            !generating && <>
-              <Text className="my-4">Which metadata fields do you wish to download? (Comma seperated string fields from image metadata to output). Only images missing one or more of these fields will be included in download</Text>
-              <Input inputMode='text' value={fields} onChange={(e) => setFields(e.target.value)} />
-              <Text className="my-4">Only include entries missing the field(s)</Text>
-              <Checkbox id='onlymissing' checked={onlyMissing} onCheckedChange={() => setOnlyMissing(!onlyMissing)}></Checkbox>
-              <Button className="my-4" onClick={handleDownload}>Download</Button>
-            </>
-          }
-          {
-            generating && <>
-              <Text>Generating output file, download will start automatically once finished...</Text>
-            </>
-          }
-          
+        <div className="items-center justify-between px-6 py-4">
+          <Heading level="h3">Download as CSV</Heading>
+          <div className="flex flex-col">
+            {
+              !generating && <>
+                <Text className="my-4">Metadata properties to include (Comma seperated).</Text>
+                <Input inputMode='text' value={fields} onChange={(e) => setFields(e.target.value)} />
+                <Text className="my-4">Only include entries missing the property(ies)</Text>
+                <Checkbox id='onlymissing' checked={onlyMissing} onCheckedChange={() => setOnlyMissing(!onlyMissing)}></Checkbox>
+                <Button className="my-4" onClick={handleDownload}>Download</Button>
+              </>
+            }
+            {
+              generating && <>
+                <Text>Generating output file, download will start automatically once finished...</Text>
+              </>
+            }
+          </div>
         </div>
-      </Container>
-      
-      <Container className="divide-y p-0">
-        <div className="flex items-center justify-between px-6 py-4">
-          <Heading level="h2">Upload Image Metadata</Heading>
+        <div className="items-center justify-between px-6 py-4">
+          <Heading level="h3">Upload from CSV</Heading>
+          <div className="flex h-full flex-col">
+            {
+              !uploading && <>
+                <Text className="my-4">Upload csv file with metadata to set on image. "url" is a required column.</Text>
+                <FileUpload
+                      label={'Upload csv file'}
+                      formats={['text/csv']}
+                      onUploaded={(files) => handleUpload(files)}
+                      multiple={false}
+                    />
+              </>
+            }
+            {
+              uploading && <>
+                <Text className="my-4">{message}</Text>
+              </>
+            }
+          </div>
         </div>
-        <div className="flex h-full flex-col px-6 py-4">
-          {
-            !uploading && <>
-              <Text className="my-4">Upload csv file with metadata to set on image. "url" is a required column.</Text>
-              <FileUpload
-                    label={'Upload csv file'}
-                    formats={['text/csv']}
-                    onUploaded={(files) => handleUpload(files)}
-                    multiple={false}
-                  />
-            </>
-          }
-          {
-            uploading && <>
-              <Text className="my-4">{message}</Text>
-            </>
-          }
-        </div>
+        
       </Container>
     </>
   )
