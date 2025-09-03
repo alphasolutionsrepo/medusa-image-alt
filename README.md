@@ -42,3 +42,6 @@ This widget enables export and import images to/from CSV. The default setting is
 The import action will set any included columns (asides from the mandatory url column) to the metadata, retaining any other metadata already present on the image.\
 ![import export widget](https://github.com/alphasolutionsrepo/medusa-image-alt/blob/main/doc/import-export-widget.png?raw=true)
 This widget was intended to be introduced as a route extension - unfortunately that broke upon making it a module. Instead it is located as a widget on the built in settings/store route.
+
+### Changelog
+Added error messages to the import widget, and support for other datatypes than string for metadata
