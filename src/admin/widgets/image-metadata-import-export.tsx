@@ -13,6 +13,7 @@ const ImageMetadataImportExport = ({ data }: DetailWidgetProps<AdminStore>) => {
   const [onlyMissing, setOnlyMissing] = useState<boolean>(true)
   const [uploading, setUploading] = useState<boolean>(false)
   const [message, setMessage] = useState<string>('')
+  const [errors, setErrors] = useState<string[]>([])
 
   const handleDownload = async () => {
     setGenerating(true)
@@ -46,10 +47,17 @@ const ImageMetadataImportExport = ({ data }: DetailWidgetProps<AdminStore>) => {
         }
       })
 
-      await sdk.client.fetch(`/admin/image-metadata`, {
-        method: 'POST',
-        body: data
-      })
+      try {
+        const result : { status: string, errors?: string[] } = await sdk.client.fetch(`/admin/image-metadata`, {
+          method: 'POST',
+          body: data
+        })
+        if (result.errors && result.errors.length > 0) {
+          setErrors([ ...errors, ...result.errors ])
+        }
+      } catch (error) {
+        setErrors([ ...errors, `Error setting metadata for: ${data[0].url} to ${data[data.length-1].url}` ])
+      }
 
     } while (batch.length > 0)
 
@@ -100,6 +108,10 @@ const ImageMetadataImportExport = ({ data }: DetailWidgetProps<AdminStore>) => {
             {
               uploading && <>
                 <Text className="my-4">{message}</Text>
+                {errors.length > 0 ? <Heading level="h3">Errors:</Heading> : ''}
+                {errors.map((e, n) => {
+                  return (<Text key={n}>{e}</Text>)
+                })}
               </>
             }
           </div>

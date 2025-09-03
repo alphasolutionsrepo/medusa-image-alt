@@ -17,7 +17,7 @@ class ImageMetadataService extends MedusaService({
 
     for (const entry of Object.entries(data.metadata)) {
       sql += `
-        || jsonb_build_object('${entry[0]}', '${entry[1].replace("'", "''")}')`
+        || jsonb_build_object('${entry[0]}', '${entry[1].toString().replace("'", "''")}')`
     }
     
     sql += `

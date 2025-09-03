@@ -9,12 +9,21 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
   const service = req.scope.resolve<ImageMetadataService>(IMAGE_METADATA_MODULE)
 
   const data = req.body as UrlAndMetadata[];
+  const errors : string[] = []
 
   for (const image of data) {
-    await service.setImageMetadataByUrl(image)
+    try {
+      await service.setImageMetadataByUrl(image)
+    } catch (error) {
+      errors.push(`error setting metadata for ${image.url}: ${error.toString()}`)
+    }
   }
-  
-  res.json({ 'status': 'ok' })
+
+  if (errors) {
+    res.json({ 'status': 'error', errors })
+  } else {
+    res.json({ 'status': 'ok' })
+  }
 }
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
